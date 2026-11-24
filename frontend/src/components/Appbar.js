@@ -14,7 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FeedbackIcon from '@mui/icons-material/Feedback';
 
 const pages = ['Signin', 'Signup', 'User', 'Show'];
-const settings = ['Profile', 'Logout'];
 
 function ResponsiveAppBar({ store }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
