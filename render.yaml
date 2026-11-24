@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: jfsd-backend
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 8080
