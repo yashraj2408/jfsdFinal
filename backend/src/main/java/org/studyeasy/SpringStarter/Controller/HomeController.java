@@ -97,12 +97,28 @@ public ResponseEntity<Void> deleteTheme(@PathVariable Long id) {
 
     @PostMapping("/login")
     public String authenticateUser(@RequestParam String email, @RequestParam String password, HttpSession session, Model model) {
-        User user = userRepository.findByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
+        String cleanEmail = email != null ? email.trim() : "";
+        String cleanPassword = password != null ? password.trim() : "";
+
+        User user = userRepository.findByEmail(cleanEmail);
+
+        // Self-heal default credentials if not yet seeded
+        if (user == null) {
+            if ((cleanEmail.equalsIgnoreCase("admin@gmail.com") || cleanEmail.equalsIgnoreCase("satyavenkat93881@gmail.com"))
+                    && cleanPassword.equals("admin123")) {
+                user = new User(cleanEmail.toLowerCase(), "admin123", "admin", "System Administrator", "ADMIN");
+                userRepository.save(user);
+            } else if (cleanEmail.equalsIgnoreCase("user@gmail.com") && cleanPassword.equals("user123")) {
+                user = new User(cleanEmail.toLowerCase(), "user123", "demouser", "Demo Customer", "USER");
+                userRepository.save(user);
+            }
+        }
+
+        if (user != null && user.getPassword().equals(cleanPassword)) {
             session.setAttribute("user", user); // Store user in session
             return "redirect:/profile"; // Redirect to profile page
         } else {
-            model.addAttribute("error", "Invalid credentials!");
+            model.addAttribute("error", "Invalid credentials! Please check your email and password, or click Sign Up.");
             return "login"; // Return to login page with error
         }
     }
