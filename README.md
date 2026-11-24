@@ -60,6 +60,29 @@ Zero database setup required. The application uses a pre-configured embedded dat
 
 ---
 
+## 🔑 Default Login & Service Credentials
+
+### 1. Web Portal & Admin Dashboard Logins
+| Role | Email ID | Password | Access |
+|---|---|---|---|
+| **System Admin** | `admin@gmail.com` | `admin123` | Full React Admin Dashboard & Theme Management |
+| **Alternate Admin** | `satyavenkat93881@gmail.com` | `admin123` | Full Admin Privileges |
+| **Demo Customer** | `user@gmail.com` | `user123` | Customer Portal & Profile Management |
+
+### 2. Email Notification Service (Gmail SMTP)
+Used automatically by Spring Boot to send meeting booking confirmations:
+* **Host:** `smtp.gmail.com`
+* **Port:** `587`
+* **Sender Email:** `satyavenkat93881@gmail.com`
+* **App Password:** `ixnp dbyu zcho jccn`
+
+### 3. Embedded Database (H2 Console)
+* **JDBC URL:** `jdbc:h2:file:./db/blogdb;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE`
+* **User:** `sa`
+* **Password:** *(leave blank)*
+
+---
+
 ## 🚀 Free Lifetime Cloud Deployment (Render + Vercel)
 
 ### Step 1: Deploy Backend for Free on [Render.com](https://render.com)
