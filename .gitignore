@@ -6,6 +6,14 @@ target/
 *.ear
 .mvn/wrapper/maven-wrapper.jar
 
+# Database files (H2 auto-generates cleanly on startup)
+*.mv.db
+*.trace.db
+db/*.mv.db
+db/*.trace.db
+backend/db/*.mv.db
+backend/db/*.trace.db
+
 # Node / React
 node_modules/
 build/
